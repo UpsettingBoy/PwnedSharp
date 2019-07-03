@@ -11,7 +11,7 @@ namespace PwnedSharp.Providers.Services
     /// <summary>
     /// HaveIBeenPwned service (wrapper over <see cref="HaveIBeenPwnedAdapter"/>).
     /// </summary>
-    public class HaveIBeenPwned : PwnedProvider, IPwnedService
+    internal class HaveIBeenPwned : PwnedProvider, IPwnedService
     {
         private HaveIBeenPwnedAdapter _adapter;
 

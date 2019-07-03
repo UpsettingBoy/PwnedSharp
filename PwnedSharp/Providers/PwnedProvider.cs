@@ -7,7 +7,7 @@ namespace PwnedSharp.Providers
     /// <summary>
     /// Abstract class defining the contructor of Pwned providers.
     /// </summary>
-    public abstract class PwnedProvider
+    internal abstract class PwnedProvider
     {
         public PwnedProvider(string appName)
         { }
