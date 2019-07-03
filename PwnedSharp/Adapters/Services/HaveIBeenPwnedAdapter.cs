@@ -74,7 +74,7 @@ namespace PwnedSharp.Adapters.Services
 
             var stringData = await _passClient.GetStringAsync($"{first5}");
 
-            foreach (string pwned in stringData.Split(' '))
+            foreach (string pwned in stringData.Split('\r', '\n'))
             {
                 string hashRemain = pwned.Split(':')[0];
 
