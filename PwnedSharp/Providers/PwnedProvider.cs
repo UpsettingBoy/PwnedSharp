@@ -7,11 +7,9 @@ namespace PwnedSharp.Providers
     /// <summary>
     /// Abstract class defining the contructor of Pwned providers.
     /// </summary>
-    public abstract class PwnedProvider : IDisposable
+    public abstract class PwnedProvider
     {
         public PwnedProvider(string appName)
         { }
-
-        public abstract void Dispose();
     }
 }

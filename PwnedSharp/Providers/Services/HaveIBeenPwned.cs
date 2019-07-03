@@ -40,7 +40,7 @@ namespace PwnedSharp.Providers.Services
             return (await _adapter.GetBreachesAsync(email)).Cast<IBreach>().ToList();
         }
 
-        public override void Dispose()
+        public void Dispose()
         {
             _adapter.Dispose();
         }
