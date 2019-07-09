@@ -16,6 +16,7 @@ namespace PwnedSharp
 
         private static readonly Lazy<PwnedFactory> _instance = new Lazy<PwnedFactory>(() => new PwnedFactory());
         private static string _appName = DEFAULT_APPNAME;
+
         private readonly Dictionary<ProvidersEnum, IPwnedService> _providers;
 
         private PwnedFactory()
@@ -39,7 +40,7 @@ namespace PwnedSharp
                     pwned = new HaveIBeenPwned(appName?? _appName);
                     break;
                 default:
-                    break;
+                    throw new ArgumentOutOfRangeException(nameof(provider), provider, "Argument out of scope!");
             }
 
             _providers.Add(provider, pwned);
