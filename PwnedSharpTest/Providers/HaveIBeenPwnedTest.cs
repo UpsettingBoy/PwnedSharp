@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PwnedSharp;
 using PwnedSharp.Models.HaveIBeenPwned;
+using PwnedSharp.Providers;
 using PwnedSharp.Providers.Services;
 using System;
 using System.Collections.Generic;
@@ -10,12 +12,12 @@ namespace PwnedSharpTest.Providers
     [TestClass]
     public class HaveIBeenPwnedTest
     {
-        private HaveIBeenPwned _service;
+        private IPwnedService _service;
 
         [TestInitialize]
         public void InitilizeService()
         {
-            _service = new HaveIBeenPwned("TestPwned");
+            _service = PwnedFactory.Instance.GetPwnedService(ProvidersEnum.HaveIBeenPwned, "PwenedTest");
         }
 
         [TestMethod]
