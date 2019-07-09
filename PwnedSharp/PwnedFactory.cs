@@ -12,6 +12,9 @@ namespace PwnedSharp
     {
         private const string DEFAULT_APPNAME = "PwnedSharp";
 
+        /// <summary>
+        /// Gets the only instance of <see cref="PwnedFactory"/>.
+        /// </summary>
         public static PwnedFactory Instance => _instance.Value;
 
         private static readonly Lazy<PwnedFactory> _instance = new Lazy<PwnedFactory>(() => new PwnedFactory());
@@ -24,11 +27,23 @@ namespace PwnedSharp
             _providers = new Dictionary<ProvidersEnum, IPwnedService>();
         }
 
+        /// <summary>
+        /// Sets the default name of the app.
+        /// </summary>
+        /// <param name="name"></param>
         public void SetDefaultAppName(string name)
         {
             _appName = name ?? DEFAULT_APPNAME;
         }
 
+        /// <summary>
+        /// Gets an instance of <see cref="IPwnedService"/>.<para></para>
+        /// If <paramref name="appName"/> is not setted, <see cref="DEFAULT_APPNAME"/> will be used.<para></para>
+        /// If <see cref="SetDefaultAppName(string)"/> was used, better use the indexer <see cref="this[ProvidersEnum]"/>.
+        /// </summary>
+        /// <param name="provider"><see cref="IPwnedService"/> provider.</param>
+        /// <param name="appName">Name of the app.</param>
+        /// <returns></returns>
         public IPwnedService GetPwnedService(ProvidersEnum provider, string appName = null)
         {
             if (_providers.TryGetValue(provider, out IPwnedService pwned))
@@ -48,6 +63,11 @@ namespace PwnedSharp
             return pwned;
         }
 
+        /// <summary>
+        /// Gets the instance linked to <paramref name="provider"/>.
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <returns></returns>
         public IPwnedService this[ProvidersEnum provider] => GetPwnedService(provider);
     }
 }

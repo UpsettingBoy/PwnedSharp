@@ -7,7 +7,7 @@ namespace PwnedSharp.Providers
     /// <summary>
     /// This abstract class is the base for Pwned API adapters.
     /// </summary>
-    public abstract class PwnedService : IDisposable
+    internal abstract class PwnedService : IDisposable
     {
         public abstract string AppName { get; set; }
 
