@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 
 namespace PwnedSharp.Utils
@@ -47,6 +46,34 @@ namespace PwnedSharp.Utils
         public static bool ContainsOnlyNumbers(this string value)
         {
             return value.CountNumbers() == value.Length;
+        }
+
+        public static Dictionary<char, int> CountCharacters(this string value)
+        {
+            var count = new Dictionary<char, int>();
+
+            foreach (var c in value)
+                count.Add(c, count.TryGetValue(c, out int total) ? total++ : 1);
+
+            return count;
+        }
+
+        public static int CountConsecutive(this string value, Func<char, bool> predicate)
+        {
+            bool flag;
+            int count = 0;
+
+            foreach (var c in value)
+            {
+                flag = predicate(c);
+
+                if (flag)
+                    count++;
+                else
+                    count = 0;
+            }
+
+            return count;
         }
     }
 }
