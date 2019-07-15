@@ -58,10 +58,12 @@ namespace PwnedSharp.Utils
             return count;
         }
 
-        public static int CountConsecutive(this string value, Func<char, bool> predicate = null)
+        public static Dictionary<char, int> CountConsecutive(this string value, Func<char, bool> predicate = null)
         {
             if (predicate is null)
                 predicate = (c) => true;
+
+            var dic = new Dictionary<char, int>();
 
             int count = 0;
             char current = value[0];
@@ -72,12 +74,14 @@ namespace PwnedSharp.Utils
                     count++;
                 else
                 {
+                    dic.Add(current, count);
+
                     count = 0;
                     current = value[i];
                 }
             }
 
-            return count;
+            return dic;
         }
     }
 }
