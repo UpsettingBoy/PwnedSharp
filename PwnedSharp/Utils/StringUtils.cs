@@ -58,19 +58,23 @@ namespace PwnedSharp.Utils
             return count;
         }
 
-        public static int CountConsecutive(this string value, Func<char, bool> predicate)
+        public static int CountConsecutive(this string value, Func<char, bool> predicate = null)
         {
-            bool flag;
+            if (predicate is null)
+                predicate = (c) => true;
+
             int count = 0;
+            char current = value[0];
 
-            foreach (var c in value)
+            for (int i = 1; i < value.Length; i++)
             {
-                flag = predicate(c);
-
-                if (flag)
+                if (current == value[i] && predicate(value[i]))
                     count++;
                 else
+                {
                     count = 0;
+                    current = value[i];
+                }
             }
 
             return count;
